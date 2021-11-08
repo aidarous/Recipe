@@ -7,14 +7,18 @@ function App() {
 const APP_ID = 'aeaa4ac3';
 const APP_KEY = 'a5f2877e626d5ee72ba678a85e8d1fa3'
 
+const [recipes, setRecipes] = useState([]);
+const [search,setSearch] = useState("")
 const getRecipe = async () => {
   try{
   const res = await fetch(`https://api.edamam.com/search?q=chicken&app_id=${APP_ID}&app_key=${APP_KEY}&from=0&to=3&calories=591-722&health=alcohol-free`)
   const data = await res.json();
   console.log(data)
+  setRecipes(data.hits);
   } catch (error) {
     console.error(error);
   }
+
 }
 
   useEffect( () => {
@@ -22,15 +26,23 @@ const getRecipe = async () => {
 
   },[])
 
-
+  const updateSearch = e => {
+    setSearch(e.target.value);
+  }
 
   return (
     <div className="App">
       <form>
-        <input />
+        <input type="text" value={search} onChange={updateSearch}/>
         <button  >Search</button>
       </form>
-      
+      {recipes.map(recipe => (
+        <Recipe 
+        key= {recipe.recipe.label}
+        tite={recipe.recipe.label} 
+        calories={recipe.recipe.calories} 
+        image= {recipe.recipe.image} />
+      ) )}
     </div>
   );
 }
