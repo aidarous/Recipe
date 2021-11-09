@@ -52,7 +52,8 @@ const [query, setQuery] = useState('chicken'); // prevents fetching data with ev
         key= {recipe.recipe.label}
         title={recipe.recipe.label} 
         calories={recipe.recipe.calories} 
-        image= {recipe.recipe.image} />
+        image= {recipe.recipe.image}
+        ingredients= {recipe.recipe.ingredients} />
       ) )}
     </div>
   );
