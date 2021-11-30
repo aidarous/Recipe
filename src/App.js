@@ -43,18 +43,22 @@ const [query, setQuery] = useState('chicken'); // prevents fetching data with ev
 
   return (
     <div className="App">
+      <h1> Aida's Cookbook </h1>
+      <h2>Search for recipes here</h2>
       <form onSubmit={getSearch}>
         <input type="text" value={search} onChange={updateSearch}/>
         <button  >Search</button>
       </form>
-      {recipes.map(recipe => (
-        <Recipe 
-        key= {recipe.recipe.label}
-        title={recipe.recipe.label} 
-        calories={recipe.recipe.calories} 
-        image= {recipe.recipe.image}
-        ingredients= {recipe.recipe.ingredients} />
-      ) )}
+        <div className="recipes">
+          {recipes.map(recipe => (
+            <Recipe 
+            key= {recipe.recipe.label}
+            title={recipe.recipe.label} 
+            calories={recipe.recipe.calories} 
+            image= {recipe.recipe.image}
+            ingredients= {recipe.recipe.ingredients} />
+          ) )}
+        </div>
     </div>
   );
 }
